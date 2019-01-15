@@ -1,4 +1,6 @@
 library(dplyr)
+library(devtools)
+load_all('../datapkg')
 library(datapkg)
 library(acs)
 library(stringr)
@@ -17,7 +19,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2010:2016)
+yearlist=c(2010:2017)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -182,7 +184,7 @@ med_age_data <- med_age_data %>%
 
 write.table (
   med_age_data,
-  file.path(getwd(), "data", "median_age_county_2016.csv"),
+  file.path(getwd(), "data", "median_age_county_2017.csv"),
   sep = ",",
   row.names = F,
   na = "-9999"
