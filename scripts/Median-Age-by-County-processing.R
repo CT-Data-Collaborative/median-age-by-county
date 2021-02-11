@@ -1,12 +1,17 @@
+# Setting wd to current directory (Windows)
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# source('acsHelpers.R')
+
 library(dplyr)
 library(devtools)
-load_all('../datapkg')
 library(datapkg)
 library(acs)
 library(stringr)
 library(reshape2)
 library(data.table)
 library(tidyr)
+
+# Linux
 source('./scripts/acsHelpers.R')
 
 ##################################################################
@@ -19,7 +24,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2010:2018)
+yearlist=c(2010:2019)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -184,10 +189,20 @@ med_age_data <- med_age_data %>%
 
 med_age_data$Value <- replace(med_age_data$Value, med_age_data$Value %in% c(-222222222, -666666666), -6666) 
 
+#Linux
 write.table (
   med_age_data,
-  file.path(getwd(), "data", "median_age_county_2018.csv"),
+  file.path(getwd(), "data", "median_age_county_2019.csv"),
   sep = ",",
   row.names = F,
   na = "-9999"
 )
+
+#Windows
+# write.table (
+#   med_age_data,
+#   file.path("C:/Users/Jason/Documents/GitHub/median-age-by-county/data/median_age_county_2019.csv"),
+#   sep = ",",
+#   row.names = F,
+#   na = "-9999"
+# )
