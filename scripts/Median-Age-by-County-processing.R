@@ -1,4 +1,4 @@
-# Setting wd to current directory (Win)
+# Setting wd to current directory (Windows)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # source('acsHelpers.R')
 
